@@ -43,18 +43,18 @@ A possible use of **µZ** (in fact, my original purpose) is to handle BNF syntax
 _('EXPRESSION')('LITERAL')
 ({
 	EXPRESSION: _/"LITERAL"
-			  | _/"NAME"
-			  | _/'(' + EXPRESSION + _/')'
-			  | _/"PREFIX_OP" + EXPRESSION
-			  | EXPRESSION +
-			  	(
-			  	  _/"INFIX_OP" + EXPRESSION
-			  	| _/'?' + EXPRESSION + _/':' + EXPRESSION
-			  	| _/"INVOCATION"
-			  	| _/"REFINEMENT"
-			  	)
-			  | _/'new' + EXPRESSION + _/"INVOCATION"
-			  | _/'delete' + EXPRESSION + _/"REFINEMENT"
+		  | _/"NAME"
+		  | _/'(' + EXPRESSION + _/')'
+		  | _/"PREFIX_OP" + EXPRESSION
+		  | EXPRESSION +
+		  	(
+		  	  _/"INFIX_OP" + EXPRESSION
+		  	| _/'?' + EXPRESSION + _/':' + EXPRESSION
+		  	| _/"INVOCATION"
+		  	| _/"REFINEMENT"
+		  	)
+		  | _/'new' + EXPRESSION + _/"INVOCATION"
+		  | _/'delete' + EXPRESSION + _/"REFINEMENT"
 	,
 	LITERAL: _/"a-z"
 	,
@@ -68,8 +68,16 @@ One could extend the syntax above to handle expressions such as:
 • item*1 --addresing item+
 • ~item  --addressing optional item: item?
 
+Issues
+=====
+
+Not really an issue, but an important consequence of how **µZ** works: all declared tokens are loaded in $.global, which is usually considered polluting the global namespace.
+
+For that reason, **µZ** will not support token names which are not valid JS identifiers. This is not a bug, this is a feature!!
+
+What if your expressions are invalid? **µZ** does not manage or throw errors by itself, because errors are just instantly detected by the interpreter. (Yeah, this is feature too!)
 
 Project status
 =====
 
-Work-in-progress.
+Work-in-progress. Many things in the present module seem useless or sound like placeholders for a simple reason: they are so!
