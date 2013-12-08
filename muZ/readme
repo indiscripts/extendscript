@@ -42,7 +42,7 @@ A possible use of **µZ** (in fact, my original purpose) is to handle BNF syntax
 
 _('EXPRESSION')('LITERAL')
 ({
-	EXPRESSION: _/"LITERAL"
+	EXPRESSION: LITERAL
 		  | _/"NAME"
 		  | _/'(' + EXPRESSION + _/')'
 		  | _/"PREFIX_OP" + EXPRESSION
