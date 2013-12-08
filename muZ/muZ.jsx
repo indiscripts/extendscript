@@ -70,7 +70,7 @@
 
 _('EXPRESSION')('LITERAL')
 ({
-    EXPRESSION: _/"LITERAL"
+    EXPRESSION: LITERAL
               | _/"NAME"
               | _/'(' + EXPRESSION + _/')'
               | _/"PREFIX_OP" + EXPRESSION
