@@ -15,7 +15,7 @@ Once the module is loaded you get a global `_` (underscore) function that allows
 Each <expression> must be a valid JS expression. It can use:
 
 + Any declared token identifier (as itself).
-+ The _ identifier (as the root).
++ The `_` identifier (as the root).
 + Operators, parentheses, scalar values.
 
 As a result, each `_.TOKEN` points out to a function that parses the considered token through a callback function.
@@ -62,13 +62,13 @@ A possible use of **µZ** (in fact, my original purpose) is to handle BNF syntax
 			,
 		});
 
-Here I use the expression `_/"foo"` --that is, `/(µZ,"foo")`-- as a way to declare literals, then `+` means concatenation, `|` means alternation, and so on.
+Here I use the expression `_/"foo"`—that is, `/(µZ,"foo")`—as a way to declare literals, then `+` means concatenation, `|` means alternation, and so on.
 
 One could extend the syntax above to handle expressions such as:
 
-+ `item*0` --addressing the Kleene star, `item*` in regex syntax
-+ `item*1` --addresing `item+`
-+ `~item`  --addressing optional item, that is `item?`
++ `item*0` —addressing the Kleene star, `item*` in regex syntax
++ `item*1` —addressing `item+`
++ `~item`  —addressing optional item, that is `item?`
 
 Issues
 =====
