@@ -12,7 +12,7 @@ Once the module is loaded you get a global `_` (underscore) function that allows
 		    // etc.
 		});
 
-Each <expression> must be a valid JS expression. It can use:
+Each `<expression>` must be a valid JS expression. It can use:
 
 + Any declared token identifier (as itself).
 + The `_` identifier (as the root).
