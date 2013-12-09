@@ -5,24 +5,25 @@ What is µZ?
 
 Once the module is loaded you get a global _ (underscore) function that allows to declare tokens and complex expressions in the form:
 
-_('TOKEN1')('TOKEN2') // declare tokens
-({
-    TOKEN1: <expression1>,
-    TOKEN2: <expression2>,
-    // etc.
-});
+		_('TOKEN1')('TOKEN2') // declare tokens
+		({
+		    TOKEN1: <expression1>,
+		    TOKEN2: <expression2>,
+		    // etc.
+		});
 
 Each <expression> must be a valid JS expression. It can use:
 
-• Any declared token identifier (as itself).
-• The _ identifier (as the root).
-• Operators, parentheses, scalar values.
++ Any declared token identifier (as itself).
++ The _ identifier (as the root).
++ Operators, parentheses, scalar values.
 
 As a result, each _.TOKEN points out to a function that parses the considered token through a callback function.
 
 **µZ** automatically intercepts operator invocations with respect to their precedence and associativity.
 
-Here are the supported operators: ~ * / % + - << >> >>> & ^ |
+Here are the supported operators:
+		~ * / % + - << >> >>> & ^ |
 
 How does it work?
 ======
@@ -40,33 +41,33 @@ Usage
 
 A possible use of **µZ** (in fact, my original purpose) is to handle BNF syntax, as shown in the sample code:
 
-_('EXPRESSION')('LITERAL')
-({
-	EXPRESSION: LITERAL
-		  | _/"NAME"
-		  | _/'(' + EXPRESSION + _/')'
-		  | _/"PREFIX_OP" + EXPRESSION
-		  | EXPRESSION +
-		  	(
-		  	  _/"INFIX_OP" + EXPRESSION
-		  	| _/'?' + EXPRESSION + _/':' + EXPRESSION
-		  	| _/"INVOCATION"
-		  	| _/"REFINEMENT"
-		  	)
-		  | _/'new' + EXPRESSION + _/"INVOCATION"
-		  | _/'delete' + EXPRESSION + _/"REFINEMENT"
-	,
-	LITERAL: _/"a-z"
-	,
-});
+		_('EXPRESSION')('LITERAL')
+		({
+			EXPRESSION: LITERAL
+		  		| _/"NAME"
+		  		| _/'(' + EXPRESSION + _/')'
+		  		| _/"PREFIX_OP" + EXPRESSION
+		  		| EXPRESSION +
+		  			(
+		  	  		_/"INFIX_OP" + EXPRESSION
+		  			| _/'?' + EXPRESSION + _/':' + EXPRESSION
+		  			| _/"INVOCATION"
+		  			| _/"REFINEMENT"
+		  			)
+		  		| _/'new' + EXPRESSION + _/"INVOCATION"
+		  		| _/'delete' + EXPRESSION + _/"REFINEMENT"
+			,
+			LITERAL: _/"a-z"
+			,
+		});
 
 Here I use the expression _/"foo" --that is, /(µZ,"foo")-- as a way to declare literals, then + means concatenation, | means alternation, and so on.
 
 One could extend the syntax above to handle expressions such as:
 
-• item*0 --addressing the Kleene star: item*
-• item*1 --addresing item+
-• ~item  --addressing optional item: item?
++ item*0 --addressing the Kleene star: item*
++ item*1 --addresing item+
++ ~item  --addressing optional item: item?
 
 Issues
 =====
