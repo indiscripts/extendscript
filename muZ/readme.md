@@ -1,7 +1,7 @@
 What is µZ?
 ======
 
-**µZ** is a very basic parser intended to demo the powerfullness of operator overloading in ExtendScript.
+**µZ** is a very basic parser intended to demo the powerfullness of [operator overloading in ExtendScript](http://www.indiscripts.com/post/2010/05/operator-overloading-with-extendscript).
 
 Once the module is loaded you get a global `_` (underscore) function that allows to declare tokens and complex expressions in the form:
 
