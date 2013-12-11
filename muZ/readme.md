@@ -40,6 +40,9 @@ No semantics is provided here. It's your job to give a meaning to e.g. `+(a,b)` 
 Usage
 ======
 
+Overview
+-----
+
 A possible use of **µZ** (in fact, my original purpose) is to handle BNF syntax, as shown in the sample code:
 
 		_('EXPRESSION')('LITERAL')
@@ -69,6 +72,25 @@ One could extend the syntax above to handle expressions such as:
 + `item*0` —addressing the Kleene star, `item*` in regex syntax
 + `item*1` —addressing `item+`
 + `~item`  —addressing optional item, that is `item?`
+
+Step-by-step
+-----
+
+* Include 'muZ.jsx' in your project: `#include "muZ.jsx"`
+* Declare your tokens and your syntax using `_('TOKEN1')('TOKEN2')/*...*/({/*your syntax goes here*/});`
+* Create a callback function that implements the whole semantics of your operators: `function myCallback(/*str*/operator, /*any*/argX, /*any*/argY)`
+* Now you can *run* **µZ** on any available token using `_.MYTOKEN(myCallback);`
+
+Take note that `myCallback` will be invoked recursively from atomic to complex expressions (since **µZ** behaves as a bottom-up parser). Hence `myCallback(op, x, y)` should **return** some result that makes sense as an `x` or `y` argument to `myCallback` at a higher level.
+
+Here is a very basic callback example that simply translates a token into a flat string:
+
+		function myCallback(op, x, y)
+		{
+			return op + '(' + x + ',' + y + ')';
+		}
+
+It's up to you to perform much more interesting actions ;-)
 
 Issues
 =====
