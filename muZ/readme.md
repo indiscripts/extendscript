@@ -76,10 +76,10 @@ One could extend the syntax above to handle expressions such as:
 Step-by-step
 -----
 
-* Include 'muZ.jsx' in your project: `#include "muZ.jsx"`
-* Declare your tokens and your syntax using `_('TOKEN1')('TOKEN2')/*...*/({/*your syntax goes here*/});`
-* Create a callback function that implements the whole semantics of your operators: `function myCallback(/*str*/operator, /*any*/argX, /*any*/argY)`
-* Now you can *run* **µZ** on any available token using `_.MYTOKEN(myCallback);`
+1. Include 'muZ.jsx' in your project: `#include "muZ.jsx"`
+2. Declare your tokens and your syntax using `_('TOKEN1')('TOKEN2')/*...*/({/*your syntax goes here*/});`
+3. Create a callback function that implements the whole semantics of your operators: `function myCallback(/*str*/operator, /*any*/argX, /*any*/argY)`
+4. Then you can *run* **µZ** on any available token using `_.MYTOKEN(myCallback);`
 
 Take note that `myCallback` will be invoked recursively from atomic to complex expressions (since **µZ** behaves as a bottom-up parser). Hence `myCallback(op, x, y)` should **return** some result that makes sense as an `x` or `y` argument to `myCallback` at a higher level.
 
