@@ -1,6 +1,6 @@
 /***********************************************************************/
 /*                                                                     */
-/*   InGoogle :: Invoke Google from Indesign, based on the selection   */
+/*   InGoogle :: Invoke Google from InDesign, based on the selection   */
 /*                                                                     */
 /*   [Ver: 1.0]   [Author: M. Fisher & M. Autret]   [Modif: 01/13/15]  */
 /*   [Lang: EN|FR|DE]   [Req: InDesign CS4-CC]      [Creat: 01/13/15]  */
