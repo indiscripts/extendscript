@@ -2,7 +2,7 @@
 /*                                                                     */
 /*   InGoogle :: Invoke Google from InDesign, based on the selection   */
 /*                                                                     */
-/*   [Ver: 1.0]   [Author: M. Fisher & M. Autret]   [Modif: 01/13/15]  */
+/*   [Ver: 1.1]   [Author: M. Fisher & M. Autret]   [Modif: 01/13/15]  */
 /*   [Lang: EN|FR|DE]   [Req: InDesign CS4-CC]      [Creat: 01/13/15]  */
 /*   [Type: FREE]                                                      */
 /*                                                                     */
@@ -28,7 +28,13 @@
 /***********************************************************************/
 
 
-const ENGINE = 'http://www.google.com/search?q=%1&hl=%2&lr=lang_%2';
+// Set the below param, FORCE_EXACT_MATCH, as follows:
+// 1 <=> always send a "word1 word2 word3..." query to Google (exact match)
+// 0 <=> send an exact-match query *only* if non-breaking spaces are used
+// ---
+const FORCE_EXACT_MATCH = 1;
+
+const ENGINE = 'http://www.google.com/search?%1=%2&hl=%3&lr=lang_%3';
 
 const LOC2LANG = {
 	ARABIC:					'ar',
@@ -58,10 +64,14 @@ const LOC2LANG = {
 	};
 
 
-(function(s,lg,q,url,doc,src,dst,hyper)
+(function(s,lg,t,q,qType,url,doc,src,dst,hyper)
 {
+	// Language in 'xx' form (lowercase) based on the ID Locale
+	// ---
 	lg = LOC2LANG[(function(L,k){for( k in Locale )if( L==+Locale[k] ) return k.replace(/_LOCALE$/,'')})(+app.locale)]||'en';
 
+	// Is there some (selected) text?
+	// ---
 	if( !s.length || !(s=s[0]).hasOwnProperty('baseline') || !s.characters.length )
 		{
 		alert( {
@@ -71,10 +81,17 @@ const LOC2LANG = {
 		return;
 		}
 
-	q = s.texts[0].contents.split(/\s+/g).join('+');
-	url = localize(ENGINE, q, lg);
-	doc = app.properties.activeDocument;
 	
+	// Format the query string
+	// ---
+	t = s.texts[0].contents;
+	qType = (FORCE_EXACT_MATCH || /[\u00A0\u202F]/.test(t)) ? 'as_epq' : 'q';
+	q = t.split(/\s+/g).join('+');
+	url = localize(ENGINE, qType, q, lg);
+	
+	// Create and call a 'ghost' hyperlink based on the url
+	// ---
+	doc = app.properties.activeDocument;
 	try {
 		src = doc.hyperlinkTextSources.add({ sourceText:s });
 		dst = doc.hyperlinkURLDestinations.add({ destinationURL:url });
@@ -85,8 +102,10 @@ const LOC2LANG = {
 		alert(e);
 		return;
 		}
-
  	hyper.showDestination();
+ 	
+ 	// Cleanup
+ 	// ---
 	hyper.remove();
 	dst.remove();
 	src.remove();
