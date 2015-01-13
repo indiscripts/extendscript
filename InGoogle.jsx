@@ -28,7 +28,7 @@
 /***********************************************************************/
 
 
-const ENGINE = 'http://www.google.com/search?q="%1"&hl=%2&lr=lang_%2';
+const ENGINE = 'http://www.google.com/search?q=%1&hl=%2&lr=lang_%2';
 
 const LOC2LANG = {
 	ARABIC:					'ar',
