@@ -2,11 +2,11 @@
 /*                                                                     */
 /*   InGoogle :: Invoke Google from InDesign, based on the selection   */
 /*                                                                     */
-/*   [Ver: 1.1]   [Author: M. Fisher & M. Autret]   [Modif: 01/13/15]  */
+/*   [Ver: 1.1]   [Author: M. Fischer & M. Autret]   [Modif: 01/13/15] */
 /*   [Lang: EN|FR|DE]   [Req: InDesign CS4-CC]      [Creat: 01/13/15]  */
 /*   [Type: FREE]                                                      */
 /*                                                                     */
-/*   Based on Martin Fisher's googleSelection.jsx script (oct. 2010)   */
+/*   Based on Martin Fischer's googleSelection.jsx script (oct. 2010)  */
 /*    http://bit.ly/1waenhR                                            */
 /*   Details on Google search parameters:                              */
 /*    http://bit.ly/1yd4lAP                                            */
